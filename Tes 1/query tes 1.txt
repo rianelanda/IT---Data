@@ -1,0 +1,8 @@
+query tes 1
+
+menggunakan MySQL phpmyadmin
+
+select c.nama as 'cabkor', a.nama as 'cabang', b.nama as 'unit_kerja' from data_cabang a
+left join data_cabang b on b.induk = a.id
+left join data_cabang c on c.id = a.induk
+where a.induk = '002' order by a.induk,a.id 
