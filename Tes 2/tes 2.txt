@@ -1,0 +1,12 @@
+tes 2
+
+menggunakan MySQL
+
+SELECT IdNasabah, KodeCabang, NamaNasabah, TanggalLahir,
+CASE
+    WHEN STR_TO_DATE(TanggalLahir, '%Y%m%d') IS NOT NULL 
+         AND DATE_FORMAT(STR_TO_DATE(TanggalLahir, '%Y%m%d'), '%Y%m%d') = TanggalLahir
+    THEN 'true'
+    ELSE 'false'
+END AS 'CekTanggal'
+FROM data_nasabah;
