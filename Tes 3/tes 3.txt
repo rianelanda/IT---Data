@@ -26,5 +26,5 @@ CASE
     COUNT(*) AS Total
 from data_nasabah
 /*where TanggalLahir = '19720532'*/
-GROUP BY Pekerjaan, Usia
+group by Pekerjaan, Usia
 order by Pekerjaan, Usia
