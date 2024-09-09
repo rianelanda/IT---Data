@@ -1,0 +1,30 @@
+tes 3
+
+menggunakan MySQL
+
+select Pekerjaan,
+CASE
+        WHEN STR_TO_DATE(TanggalLahir, '%Y%m%d') IS NOT NULL 
+             AND DATE_FORMAT(STR_TO_DATE(TanggalLahir, '%Y%m%d'), '%Y%m%d') = TanggalLahir
+        THEN TanggalLahir
+        ELSE '19900101'
+    END AS TanggalLahir,
+CASE
+        WHEN FLOOR(DATEDIFF(CURDATE(), STR_TO_DATE(TanggalLahir, '%Y%m%d')) / 365.25) <= 14 THEN '01'
+        WHEN FLOOR(DATEDIFF(CURDATE(), STR_TO_DATE(TanggalLahir, '%Y%m%d')) / 365.25) BETWEEN 15 AND 19 THEN '02'
+        WHEN FLOOR(DATEDIFF(CURDATE(), STR_TO_DATE(TanggalLahir, '%Y%m%d')) / 365.25) BETWEEN 20 AND 24 THEN '03'
+        WHEN FLOOR(DATEDIFF(CURDATE(), STR_TO_DATE(TanggalLahir, '%Y%m%d')) / 365.25) BETWEEN 25 AND 29 THEN '04'
+        WHEN FLOOR(DATEDIFF(CURDATE(), STR_TO_DATE(TanggalLahir, '%Y%m%d')) / 365.25) BETWEEN 30 AND 34 THEN '05'
+        WHEN FLOOR(DATEDIFF(CURDATE(), STR_TO_DATE(TanggalLahir, '%Y%m%d')) / 365.25) BETWEEN 35 AND 39 THEN '06'
+        WHEN FLOOR(DATEDIFF(CURDATE(), STR_TO_DATE(TanggalLahir, '%Y%m%d')) / 365.25) BETWEEN 40 AND 44 THEN '07'
+        WHEN FLOOR(DATEDIFF(CURDATE(), STR_TO_DATE(TanggalLahir, '%Y%m%d')) / 365.25) BETWEEN 45 AND 49 THEN '08'
+        WHEN FLOOR(DATEDIFF(CURDATE(), STR_TO_DATE(TanggalLahir, '%Y%m%d')) / 365.25) BETWEEN 50 AND 54 THEN '09'
+        WHEN FLOOR(DATEDIFF(CURDATE(), STR_TO_DATE(TanggalLahir, '%Y%m%d')) / 365.25) BETWEEN 55 AND 59 THEN '10'
+        WHEN FLOOR(DATEDIFF(CURDATE(), STR_TO_DATE(TanggalLahir, '%Y%m%d')) / 365.25) >= 60 THEN '11'
+        ELSE '11'
+    END AS Usia,
+    COUNT(*) AS Total
+from data_nasabah
+/*where TanggalLahir = '19720532'*/
+GROUP BY Pekerjaan, Usia
+order by Pekerjaan, Usia
